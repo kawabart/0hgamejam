@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using TMPro;
 using UnityEngine;
 
 public class Game : MonoBehaviour
@@ -8,19 +7,18 @@ public class Game : MonoBehaviour
     [SerializeField] GameObject firstText;
     [SerializeField] GameObject secondText;
     [SerializeField] GameObject thirdText;
-    [SerializeField] GameObject numberText;
+    [SerializeField] GameObject numberQuestion;
+    [SerializeField] TextMeshProUGUI number;
+    [SerializeField] GameObject tooSmallButton;
+    [SerializeField] GameObject myNumberButton;
+    [SerializeField] GameObject tooBigButton;
 
+    int guessNumber;
 
-    // Start is called before the first frame update
     void Start()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        guessNumber = Random.Range(1, 1001);
+        number.text = guessNumber.ToString();
     }
 
     public void StartGame()
@@ -44,10 +42,28 @@ public class Game : MonoBehaviour
     public void Third()
     {
         thirdText.SetActive(false);
-        numberText.SetActive(true);
+        numberQuestion.SetActive(true);
+        tooSmallButton.SetActive(true);
+        myNumberButton.SetActive(true);
+        tooBigButton.SetActive(true);
     }
 
     public void Gameplay()
+    {
+        
+    }
+
+    public void TooSmall()
+    {
+        
+    }
+
+    public void TooBig()
+    {
+
+    }
+
+    public void CorrectNumber()
     {
 
     }
