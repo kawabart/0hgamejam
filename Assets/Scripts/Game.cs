@@ -5,6 +5,11 @@ using UnityEngine;
 public class Game : MonoBehaviour
 {
     [SerializeField] GameObject title;
+    [SerializeField] GameObject firstText;
+    [SerializeField] GameObject secondText;
+    [SerializeField] GameObject thirdText;
+    [SerializeField] GameObject numberText;
+
 
     // Start is called before the first frame update
     void Start()
@@ -15,7 +20,35 @@ public class Game : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Fire1"))
-            title.SetActive(false);
+
+    }
+
+    public void StartGame()
+    {
+        title.SetActive(false);
+        firstText.SetActive(true);
+    }
+
+    public void First()
+    {
+        firstText.SetActive(false);
+        secondText.SetActive(true);
+    }
+
+    public void Second()
+    {
+        secondText.SetActive(false);
+        thirdText.SetActive(true);
+    }
+
+    public void Third()
+    {
+        thirdText.SetActive(false);
+        numberText.SetActive(true);
+    }
+
+    public void Gameplay()
+    {
+
     }
 }
