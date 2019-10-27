@@ -4,6 +4,7 @@ using UnityEngine;
 public class Game : MonoBehaviour
 {
     [SerializeField] GameObject title;
+    [SerializeField] GameObject startButton;
     [SerializeField] GameObject firstText;
     [SerializeField] GameObject secondText;
     [SerializeField] GameObject thirdText;
@@ -12,9 +13,12 @@ public class Game : MonoBehaviour
     [SerializeField] GameObject tooSmallButton;
     [SerializeField] GameObject myNumberButton;
     [SerializeField] GameObject tooBigButton;
+    [SerializeField] GameObject end;
+    [SerializeField] TextMeshProUGUI endAttempts;
+    [SerializeField] TextMeshProUGUI endNumber;
 
     int guess;
-    int smallestPossible = 1, biggestPossible = 1000;
+    int smallestPossible = 1, biggestPossible = 1000, attempts = 0;
 
     public int Guess
     {
@@ -27,15 +31,15 @@ public class Game : MonoBehaviour
         }
     }
 
-    void Start()
-    {
-        Guess = Random.Range(1, 1001);
-    }
-
     public void StartGame()
     {
+        end.SetActive(false);
         title.SetActive(false);
+        startButton.SetActive(false);
         firstText.SetActive(true);
+
+        Guess = Random.Range(1, 1001);
+        attempts = 1;
     }
 
     public void First()
@@ -63,18 +67,26 @@ public class Game : MonoBehaviour
     {
         smallestPossible = Guess + 1;
         Guess = RandomNewPossible();
+        attempts++;
     }
 
     public void TooBig()
     {
         biggestPossible = Guess - 1;
         Guess = RandomNewPossible();
+        attempts++;
     }
 
     public void CorrectNumber()
     {
-        Debug.LogWarning("NICEOOOO");
-        Debug.LogWarning(Guess);
+        endNumber.text = guess.ToString();
+        endAttempts.text = attempts.ToString();
+        end.SetActive(true);
+        numberQuestion.SetActive(false);
+        tooSmallButton.SetActive(false);
+        myNumberButton.SetActive(false);
+        tooBigButton.SetActive(false);
+        startButton.SetActive(true);
     }
 
     int RandomNewPossible()
