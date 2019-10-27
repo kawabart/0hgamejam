@@ -13,12 +13,23 @@ public class Game : MonoBehaviour
     [SerializeField] GameObject myNumberButton;
     [SerializeField] GameObject tooBigButton;
 
-    int guessNumber;
+    int guess;
+    int smallestPossible = 1, biggestPossible = 1000;
+
+    public int Guess
+    {
+        get => guess;
+
+        set
+        {
+            guess = value;
+            number.text = guess.ToString();
+        }
+    }
 
     void Start()
     {
-        guessNumber = Random.Range(1, 1001);
-        number.text = guessNumber.ToString();
+        Guess = Random.Range(1, 1001);
     }
 
     public void StartGame()
@@ -48,23 +59,26 @@ public class Game : MonoBehaviour
         tooBigButton.SetActive(true);
     }
 
-    public void Gameplay()
-    {
-        
-    }
-
     public void TooSmall()
     {
-        
+        smallestPossible = Guess + 1;
+        Guess = RandomNewPossible();
     }
 
     public void TooBig()
     {
-
+        biggestPossible = Guess - 1;
+        Guess = RandomNewPossible();
     }
 
     public void CorrectNumber()
     {
+        Debug.LogWarning("NICEOOOO");
+        Debug.LogWarning(Guess);
+    }
 
+    int RandomNewPossible()
+    {
+        return Random.Range(smallestPossible, biggestPossible + 1);
     }
 }
