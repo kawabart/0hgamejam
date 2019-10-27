@@ -8,17 +8,15 @@ public class Game : MonoBehaviour
     [SerializeField] GameObject firstText;
     [SerializeField] GameObject secondText;
     [SerializeField] GameObject thirdText;
-    [SerializeField] GameObject numberQuestion;
     [SerializeField] TextMeshProUGUI number;
-    [SerializeField] GameObject tooSmallButton;
-    [SerializeField] GameObject myNumberButton;
-    [SerializeField] GameObject tooBigButton;
+    [SerializeField] GameObject gameplay;
     [SerializeField] GameObject end;
     [SerializeField] TextMeshProUGUI endAttempts;
     [SerializeField] TextMeshProUGUI endNumber;
 
+    int smallestPossible, biggestPossible, attempts;
+
     int guess;
-    int smallestPossible = 1, biggestPossible = 1000, attempts = 0;
 
     public int Guess
     {
@@ -40,6 +38,8 @@ public class Game : MonoBehaviour
 
         Guess = Random.Range(1, 1001);
         attempts = 1;
+        smallestPossible = 1;
+        biggestPossible = 1000;
     }
 
     public void First()
@@ -57,10 +57,7 @@ public class Game : MonoBehaviour
     public void Third()
     {
         thirdText.SetActive(false);
-        numberQuestion.SetActive(true);
-        tooSmallButton.SetActive(true);
-        myNumberButton.SetActive(true);
-        tooBigButton.SetActive(true);
+        gameplay.SetActive(true);
     }
 
     public void TooSmall()
@@ -82,10 +79,7 @@ public class Game : MonoBehaviour
         endNumber.text = guess.ToString();
         endAttempts.text = attempts.ToString();
         end.SetActive(true);
-        numberQuestion.SetActive(false);
-        tooSmallButton.SetActive(false);
-        myNumberButton.SetActive(false);
-        tooBigButton.SetActive(false);
+        gameplay.SetActive(false);
         startButton.SetActive(true);
     }
 
