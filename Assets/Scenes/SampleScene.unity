@@ -629,6 +629,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   title: {fileID: 1120743790}
+  startButton: {fileID: 722754679}
   firstText: {fileID: 1052695611}
   secondText: {fileID: 1746584407}
   thirdText: {fileID: 687184009}
